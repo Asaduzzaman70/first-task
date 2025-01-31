@@ -32,43 +32,45 @@ const Calendar = () => {
     };
 
     return (
-        <div className="rounded-lg">
-            <div className="flex justify-between items-center mb-4">
-                <button onClick={prevMonth} className="w-10 h-10 rounded-full bg-gray-300 hover:bg-gray-400">
-                    &#8592;
-                </button>
-                <h2 className="text-2xl font-bold">
-                    {firstDayOfMonth.toLocaleString('default', { month: 'long' })} {currentYear}
-                </h2>
-                <button onClick={nextMonth} className="w-10 h-10 rounded-full bg-gray-300 hover:bg-gray-400">
-                    &#8594;
-                </button>
+        <section className="border-red-600 bg-slate-50 border-[3px] p-10 rounded-md">
+            <div className="rounded-lg">
+                <div className="flex justify-between items-center mb-4">
+                    <button onClick={prevMonth} className="w-10 h-10 rounded-full bg-gray-300 hover:bg-gray-400">
+                        &#8592;
+                    </button>
+                    <h2 className="text-2xl font-bold">
+                        {firstDayOfMonth.toLocaleString('default', { month: 'long' })} {currentYear}
+                    </h2>
+                    <button onClick={nextMonth} className="w-10 h-10 rounded-full bg-gray-300 hover:bg-gray-400">
+                        &#8594;
+                    </button>
+                </div>
+
+                <div className="grid grid-cols-7 gap-4 text-center">
+                    {daysOfWeek.map((day) => (
+                        <div key={day} className="font-semibold text-lg">{day}</div>
+                    ))}
+
+                    {allDays.map((day, index) => {
+                        const isToday =
+                            day &&
+                            day.getDate() === today.getDate() &&
+                            day.getMonth() === today.getMonth() &&
+                            day.getFullYear() === today.getFullYear();
+
+                        return (
+                            <div
+                                key={index}
+                                className={`w-10 h-10 rounded-full select-none flex justify-center items-center ${day ? "text-black bg-gray-200" : "text-transparent"} ${isToday ? "!bg-blue-500 text-white font-bold" : ""
+                                    }`}
+                            >
+                                {day ? day.getDate() : ""}
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
-
-            <div className="grid grid-cols-7 gap-4 text-center">
-                {daysOfWeek.map((day) => (
-                    <div key={day} className="font-semibold text-lg">{day}</div>
-                ))}
-
-                {allDays.map((day, index) => {
-                    const isToday =
-                        day &&
-                        day.getDate() === today.getDate() &&
-                        day.getMonth() === today.getMonth() &&
-                        day.getFullYear() === today.getFullYear();
-
-                    return (
-                        <div
-                            key={index}
-                            className={`w-10 h-10 rounded-full select-none flex justify-center items-center ${day ? "text-black bg-gray-200" : "text-transparent"} ${isToday ? "!bg-blue-500 text-white font-bold" : ""
-                                }`}
-                        >
-                            {day ? day.getDate() : ""}
-                        </div>
-                    );
-                })}
-            </div>
-        </div>
+        </section>
     );
 };
 
