@@ -3,9 +3,9 @@ import Degrees from "./Degrees"
 
 const Courses = () => {
   return (
-    <div className="flex gap-2">
-      <Degrees/>
-     <Circular/>
+    <div className="grid grid-cols-3 text-slate-950 container mx-auto">
+      <Degrees />
+      <Circular />
     </div>
   )
 }

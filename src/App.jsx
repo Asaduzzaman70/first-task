@@ -1,6 +1,10 @@
+import Courses from "./components/Courses"
+
 const App = () => {
   return (
-    <div>App</div>
+    <div className="bg-[#B4D4E3]">
+      <Courses />
+    </div>
   )
 }
 export default App
